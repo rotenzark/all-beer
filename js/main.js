@@ -82,15 +82,15 @@
   setTimeout(function () { if (!hasGsap || reducedMotion) showAllReveals(); }, 1500);
 
   if (hasGsap && !reducedMotion) {
-    gsap.utils.toArray('.reveal').forEach(function (el) {
+    gsap.utils.toArray('.reveal:not(.bevi-card)').forEach(function (el) {
       if (el.classList.contains('rito-logo')) return;
-      gsap.fromTo(el, { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: .7, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+      gsap.fromTo(el, { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: .7, ease: 'power2.out', immediateRender: false, scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
     });
     gsap.to('#heroPhoto', { yPercent: 8, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
     /* GESTO-FIRMA: il logo (brindisi) entra ruotando */
     var ritoLogo = document.querySelector('.rito-logo');
-    if (ritoLogo) gsap.fromTo(ritoLogo, { opacity: 0, scale: .7, rotate: -12 }, { opacity: 1, scale: 1, rotate: 0, duration: .9, ease: 'back.out(1.6)', scrollTrigger: { trigger: '#rito', start: 'top 72%', once: true } });
-    gsap.fromTo('.bevi-card', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .7, stagger: .15, ease: 'power2.out', scrollTrigger: { trigger: '.bevi-grid', start: 'top 82%', once: true } });
+    if (ritoLogo) gsap.fromTo(ritoLogo, { opacity: 0, scale: .7, rotate: -12 }, { opacity: 1, scale: 1, rotate: 0, duration: .9, ease: 'back.out(1.6)', immediateRender: false, scrollTrigger: { trigger: '#rito', start: 'top 72%', once: true } });
+    gsap.fromTo('.bevi-card', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .7, stagger: .15, ease: 'power2.out', immediateRender: false, scrollTrigger: { trigger: '.bevi-grid', start: 'top 82%', once: true } });
   } else {
     document.querySelectorAll('.reveal, .reveal-hero').forEach(function (el) { el.classList.add(SITE.inViewClass); el.style.opacity = 1; });
   }
