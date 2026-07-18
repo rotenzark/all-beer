@@ -79,7 +79,7 @@
     if (hasGsap) { gsap.set(els, { opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }); }
     else { els.forEach(function (el) { el.style.opacity = 1; }); }
   }
-  setTimeout(showAllReveals, 1500);
+  setTimeout(function () { if (!hasGsap || reducedMotion) showAllReveals(); }, 1500);
 
   if (hasGsap && !reducedMotion) {
     gsap.utils.toArray('.reveal').forEach(function (el) {
